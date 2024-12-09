@@ -986,11 +986,7 @@ function tabBtn() {
       tabMenu.forEach(val => val.classList.remove('on'));
       btn.classList.add('on');
 
-      if (e.currentTarget.dataset.id == 1) {
-        product(productItem);
-      } else {
-        product(filterItem);
-      }
+      e.currentTarget.dataset.id == 1 ? product(productItem) : product(filterItem);
     })
   })
 

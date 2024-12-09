@@ -769,11 +769,7 @@ window.addEventListener('resize', () => {
     
     if (path == 'product.html') {
       if (Number(val.dataset.id) === 2) {
-        if (innerWidth > 1024) {
-          val.classList.add('on');
-        } else {
-          val.classList.remove('on');
-        }
+        innerWidth > 1024 ? val.classList.add('on') : val.classList.remove('on');
       }
     }
   });

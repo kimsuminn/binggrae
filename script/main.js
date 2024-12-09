@@ -287,11 +287,7 @@ function scrollEvent() {
     let elTop = el.getBoundingClientRect().top;
     let windowHeight = window.innerHeight;
 
-    if (elTop < windowHeight) {
-      el.classList.add('visible');
-    } else {
-      el.classList.remove('visible');
-    }
+    elTop < windowHeight ? el.classList.add('visible') : el.classList.remove('visible');
   }
 
   window.addEventListener('scroll', () => {
