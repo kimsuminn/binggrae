@@ -502,6 +502,10 @@
     border-radius: 0;
   }
 
+  .chat_box .chat_inner .chat_sec03 {
+    overflow-y: auto;
+  }
+
   /* main */
   .front_container main .main_container .section_01 {
     padding: 10rem 1rem;
