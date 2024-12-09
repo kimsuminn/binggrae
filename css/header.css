@@ -622,6 +622,7 @@ aside .chat .help:hover img {
 }
 
 .chat_box .chat_inner .chat_sec02 .menu .menu_container .menu_wrap button p {
+  color: inherit; /* 사파리 p 태그 */
   font-size: 0.8rem;
 }
 
