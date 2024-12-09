@@ -48,8 +48,3 @@ figure {
 input, button {
   display: block;
 }
-
-button {
-  all: unset;
-  cursor: pointer;
-}

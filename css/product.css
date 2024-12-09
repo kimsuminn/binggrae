@@ -302,6 +302,7 @@
 
 @media screen and (max-width: 1024px) {
   .front_container .section {
+    margin: 10rem auto;
     padding: 0 1rem;
   }
 
@@ -332,6 +333,10 @@
 }
 
 @media screen and (max-width: 769px) {
+  .front_container .section {
+    margin: 8rem auto;
+  }
+
   .front_container .section > .search .search {
     width: 90%;
     height: 50px;

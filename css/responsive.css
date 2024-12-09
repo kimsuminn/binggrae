@@ -96,6 +96,10 @@
     display: none;
   }
 
+  .header_container {
+    height: 100px !important;
+  }
+
   .header_container .header_section {
     height: 100px;
     padding: 0 1rem;
