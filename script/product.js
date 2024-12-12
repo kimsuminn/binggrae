@@ -926,7 +926,7 @@ function product(list) {
 
   function renderProducts() {
     let startIndex = (currentPage - 1) * itemPerPage;
-    let endIndex = currentPage * itemPerPage;
+    let endIndex = Math.min(currentPage * itemPerPage, totalItems);
     let itemsToShow = list.slice(startIndex, endIndex);
 
     itemsToShow.forEach(val => {
