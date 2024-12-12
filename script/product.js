@@ -68,41 +68,45 @@ function addCategory(category) {
 
   let all = menu.querySelector('li:first-child');
   all.classList.add('on');
-
-  let swiper = new Swiper(".category", {
-    cssMode: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    slidesPerView: 10,
-    spaceBetween: 16,
-    breakpoints: {
-      0: {
-        slidesPerView: 4,
-        spaceBetween: 1,
-      },
-      360: {
-        slidesPerView: 4,
-        spaceBetween: 4,
-      },
-      500: {
-        slidesPerView: 4,
-        spaceBetween: 10,
-      },
-      750: {
-        slidesPerView: 6,
-        spaceBetween: 16,
-      },
-      1400: {
-        slidesPerView: 10,
-        spaceBetween: 16,
-      }
-    }
-  })
 }
 
 addCategory(category);
+
+let swiper = new Swiper(".category", {
+  cssMode: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  slidesPerView: 10,
+  spaceBetween: 16,
+  breakpoints: {
+    0: {
+      slidesPerView: 4,
+      spaceBetween: 1,
+      swipeToSlide: true,
+    },
+    360: {
+      slidesPerView: 4,
+      spaceBetween: 4,
+      swipeToSlide: true,
+    },
+    500: {
+      slidesPerView: 4,
+      spaceBetween: 10,
+      swipeToSlide: true,
+    },
+    750: {
+      slidesPerView: 6,
+      spaceBetween: 16,
+      swipeToSlide: true,
+    },
+    1400: {
+      slidesPerView: 10,
+      spaceBetween: 16,
+    }
+  }
+})
 
 let productItem = [
   {
@@ -951,6 +955,8 @@ function product(list) {
 
     if (endIndex >= totalItems) {
       moreBtn.style.display = 'none';
+    } else {
+      moreBtn.style.display = 'block';
     }
   }
 
@@ -965,20 +971,22 @@ function product(list) {
 function tabBtn() {
   let tabMenu = document.querySelectorAll('section .product nav ul li');
 
-  tabMenu.forEach(btn => {
+
+  tabMenu.forEach((btn, idx) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
 
+      swiper.slideTo(idx);
+      
       let categoryId = e.currentTarget.dataset.id;
 
       let url = new URL(window.location);
       let currentCategory = url.searchParams.get('category');
-      // url.searchParams.set('category', categoryId);
-      // window.history.pushState({ category: categoryId }, '', url);
+      
 
       if (currentCategory !== categoryId) {
         url.searchParams.set('category', categoryId);
-        window.location.href = url.toString();
+        window.history.pushState({ category: categoryId }, '', url);
       }
 
       let filterItem = productItem.filter(val => val.menu_code == e.currentTarget.dataset.id);
@@ -987,6 +995,42 @@ function tabBtn() {
       btn.classList.add('on');
 
       e.currentTarget.dataset.id == 1 ? product(productItem) : product(filterItem);
+
+      // header 메뉴 색 변경
+      let headerMenu = document.querySelector('header .header_container .header_section .header_sec02 .gnb01 .depth01 > li:nth-child(2)')
+      let subMenu = headerMenu.querySelectorAll('.depth02 li');
+      
+      subMenu.forEach(val => {
+        let aTag = val.querySelector('a');
+
+        let current = e.currentTarget.dataset.id;
+        let menu = val.dataset.id;
+        
+        if (current == menu) {
+          aTag.classList.add('on');
+        } else {
+          aTag.classList.remove('on');
+        }
+      })
+
+      // ham 메뉴 색 변경
+      let hamMenu = document.querySelector('.hamberger_menu .ham_container .ham_sec02 .depth01 > li:nth-child(2)');
+      let hamSub = hamMenu.querySelectorAll('.depth02 li');
+
+      hamSub.forEach(val => {
+        let aTag = val.querySelector('a');
+        
+        let current = e.currentTarget.dataset.id;
+        let menu = val.dataset.id;
+
+        if (menu != 1) {
+          if (current == menu) {
+            aTag.classList.add('on');
+          } else {
+            aTag.classList.remove('on');
+          }
+        }
+      })
     })
   })
 
